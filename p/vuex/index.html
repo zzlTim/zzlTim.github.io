@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="仅供参考">
-<title>JWT跨域</title>
+<title>vuex</title>
 
-<link rel='canonical' href='http://localhost:1313/p/onenote/'>
+<link rel='canonical' href='http://localhost:1313/p/vuex/'>
 
-<link rel="stylesheet" href="/scss/style.min.b90fe9fc6936675c0e4ec01d88766d918d0e0aa2d959d131169ca02f68c27c9d.css"><meta property='og:title' content="JWT跨域">
+<link rel="stylesheet" href="/scss/style.min.b90fe9fc6936675c0e4ec01d88766d918d0e0aa2d959d131169ca02f68c27c9d.css"><meta property='og:title' content="vuex">
 <meta property='og:description' content="仅供参考">
-<meta property='og:url' content='http://localhost:1313/p/onenote/'>
+<meta property='og:url' content='http://localhost:1313/p/vuex/'>
 <meta property='og:site_name' content='ZZL的博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-04-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-04-21T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/2.jpg' />
-<meta name="twitter:title" content="JWT跨域">
+<meta name="twitter:title" content="vuex">
 <meta name="twitter:description" content="仅供参考"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/2.jpg' />
     </head>
@@ -270,9 +270,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/onenote/">
+            <a href="/p/vuex/">
                 
-                    <img src="/2.jpg" loading="lazy" alt="Featured image of post JWT跨域" />
+                    <img src="/2.jpg" loading="lazy" alt="Featured image of post vuex" />
                 
             </a>
         </div>
@@ -282,8 +282,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/" >
-                工具分享
+            <a href="/categories/vue/" >
+                VUE
             </a>
         
             <a href="/categories/%E6%B5%8B%E8%AF%95/" >
@@ -295,7 +295,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/onenote/">JWT跨域</a>
+            <a href="/p/vuex/">vuex</a>
         </h2>
     
         
@@ -351,45 +351,202 @@
     <section class="article-content">
     
     
-    <p>用户认证一般流程
-用户向服务器发送用户名和密码
-服务器验证通过后，在当前对话（session）保存相关数据，比如登录时间
-服务器返回一个session_id,写入用户的cooKie
-用户之后的每一次请求，都会通过cookie，将session_id传回服务器
-服务器根据session_id，找到之前保存的数据，得知用户身份</p>
-<p>但是这样session扩展性不好，多台服务器如何共享session
-每次请求服务，分配的服务器可能不同
-①session持久化，写入数据库
-②数据保存在客户端，每次请求都发回服务器，Token认证就是代表</p>
-<p>Token是服务端产生的字符串，是客户端访问资源节课（API）所需的资源凭证，
-客户端使用用户名和密码，服务端收到请求，验证
-验证成功，服务器会签发一个token病把这个token发送给客户端
-客户端收到token后，会存起来，放到cookie或者localstorage
-客户端每次请求服务器都要带这个签发的token（令牌）
-服务端收到请求，去验证token，验证成功就返回它请求的数据</p>
-<p>token方法服务器不存数据，因此减轻压力
-但是解析token需要时间，因此用时间换空间
-token由应用管理，可以避开同源策略</p>
-<p>JWT是JSON Web Token
-JWT原理是，服务器认证后，生产一个json对象，发回给用户
-{“姓名”：’111‘,
-&ldquo;角色&rdquo;：‘root’,
-“到期时间”:&lsquo;2022-2-2-0:0&rsquo;
-}
-每次通信，都要发回这个json对象，服务器完全靠这个认证用户身份
-为了防止用户篡改，会生产对象时加上签名</p>
-<p>JWT有3部分
-header头部
-payload负载
-signature签名
-最终组合为一个字符串，用.分开
-Header部分是一个json对象，描述JWT的元数据，例如签名算法“alg”:&ldquo;HS256&rdquo;,令牌类型‘type’：‘JWT’
-payload也是json，存实际需要传递的数据选用，客户也看得到
-signature只有服务器知道，利用签名header的签名算法生成签名</p>
-<p>JWT可以存在cookie也可以存在localSTORAGE
-但是这样不能跨域
-所以最好放在HTTP请求的头信息“authorization”</p>
-
+    <p>大型应用往往跨越多个组件。通过多层嵌套传递参数十分复杂，并且Vue没有兄弟组件之间直接共享参数的方法。</p>
+<p><a class="link" href="https://vuex.vuejs.org/zh/guide/"  target="_blank" rel="noopener"
+    >https://vuex.vuejs.org/zh/guide/</a>
+VueX是专为Vue.js开发的状态管理库。集中式存储管理所有组件的状态
+简单地说，VueX管理分散在Vue中的各组件的数据
+npm install vuex@next  (下载最新的)</p>
+<p>vue2&ndash;vuex3
+vue3&ndash;vuex4</p>
+<p>一般大项目才用
+每个Vuex的核心都是一个store,与普通的全局对象不同的是，Vue数据和视图绑定，数据改变，绑定的视图也会被重新渲染。
+store中的状态不允许直接修改，只能通过提交(commit)mutation这可以让我们跟踪状态的变化</p>
+<p>Vuex：
+State,Getter,Mutation（改变、转变）,Action,Module<img src="https://img-blog.csdnimg.cn/direct/4fc39808de9a4bcfbb95cc392860458b.png#pic_center"
+	
+	
+	
+	loading="lazy"
+	
+		alt="状态管理"
+	
+	
+>
+State
+可以使用this.$store.state.count访问数据源
+也可以用mapstate辅助函数将其映射下来
+修改state就要通过我们定义的方法去修改
+mutation只能做一下同步操作，action可以异步操作
+不太懂。。。</p>
+<p>安装VUEX@3失败可能是因为证书过期了
+<a class="link" href="https://blog.csdn.net/qq_42761482/article/details/121018086"  target="_blank" rel="noopener"
+    >https://blog.csdn.net/qq_42761482/article/details/121018086</a></p>
+<p>通过commit修改store内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">template</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">div</span> <span class="k">class</span><span class="o">=</span><span class="s2">&#34;hello&#34;</span> <span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{{</span> <span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">button</span> <span class="err">@</span><span class="n">click</span><span class="o">=</span><span class="s2">&#34;add&#34;</span><span class="o">&gt;+</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">template</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;HelloWorld&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">methods</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">add</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">      <span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">commit</span><span class="p">(</span><span class="s2">&#34;increment&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span><span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还可以通过compute获取动态数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">template</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">div</span> <span class="k">class</span><span class="o">=</span><span class="s2">&#34;hello&#34;</span> <span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;!--</span> <span class="p">{{</span> <span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="p">}}</span> <span class="o">--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{{</span> <span class="n">count</span> <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">button</span> <span class="err">@</span><span class="n">click</span><span class="o">=</span><span class="s2">&#34;add&#34;</span><span class="o">&gt;+</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">template</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;HelloWorld&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">computed</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">count</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">count</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="n">methods</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">add</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">      <span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">commit</span><span class="p">(</span><span class="s2">&#34;increment&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span><span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以通过mapstate取数据,看不懂。。可以去看官网？
+computed:mapState([
+&lsquo;count&rsquo;
+])</p>
+<p>可能需要了解filter函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">getters:{
+</span></span><span class="line"><span class="cl">        doneTodos:state =&gt; {
+</span></span><span class="line"><span class="cl">            return state.todos.filter(todo =&gt; todo.done)
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Helloworld也可以这么写，是映射，调用index里面写的getters</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">export</span> <span class="n">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;HelloWorld&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">computed</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span><span class="n">mapState</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="s1">&#39;todos&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]),</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span><span class="n">mapGetters</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39;doneTodos&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">methods</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">add</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">      <span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">commit</span><span class="p">(</span><span class="s2">&#34;increment&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span><span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="n">this</span><span class="o">.$</span><span class="n">store</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -425,6 +582,25 @@ signature只有服务器知道，利用签名header的签名算法生成签名</
             
                 
 <article class="has-image">
+    <a href="/p/jwt%E8%B7%A8%E5%9F%9F/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/2.jpg" loading="lazy" data-key="" data-hash="/2.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JWT跨域</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/vue-element-admin%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/">
         
         
@@ -437,44 +613,6 @@ signature只有服务器知道，利用签名header的签名算法生成签名</
 
         <div class="article-details">
             <h2 class="article-title">vue-element-admin后台集成方案</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E6%9C%80%E4%BC%98%E9%9B%85%E7%9A%84onenote/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/2.jpg" loading="lazy" data-key="" data-hash="/2.jpg"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">最优雅的OneNote</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/vuex/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/2.jpg" loading="lazy" data-key="" data-hash="/2.jpg"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">vuex</h2>
         </div>
     </a>
 </article>
@@ -513,6 +651,25 @@ signature只有服务器知道，利用签名header的签名算法生成签名</
 
         <div class="article-details">
             <h2 class="article-title">使用hugo-stack遇到的问题和解决方法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%9C%80%E4%BC%98%E9%9B%85%E7%9A%84onenote/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/2.jpg" loading="lazy" data-key="" data-hash="/2.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">最优雅的OneNote</h2>
         </div>
     </a>
 </article>

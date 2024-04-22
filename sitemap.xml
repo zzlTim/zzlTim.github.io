@@ -8,10 +8,22 @@
     <loc>http://localhost:1313/categories/</loc>
     <lastmod>2024-04-21T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/p/jwt%E8%B7%A8%E5%9F%9F/</loc>
+    <lastmod>2024-04-21T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/post/</loc>
     <lastmod>2024-04-21T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/categories/vue/</loc>
+    <lastmod>2024-04-21T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/p/vue-element-admin%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/</loc>
+    <lastmod>2024-04-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/p/vuex/</loc>
+    <lastmod>2024-04-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/web/</loc>
     <lastmod>2024-04-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/%E6%B5%8B%E8%AF%95/</loc>
@@ -26,17 +38,11 @@
     <loc>http://localhost:1313/p/hugo-problems/</loc>
     <lastmod>2024-04-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/onenote/</loc>
-    <lastmod>2024-04-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/p/%E6%9C%80%E4%BC%98%E9%9B%85%E7%9A%84onenote/</loc>
     <lastmod>2024-04-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/test-chinese/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/test/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/p/%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2024-04-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/page/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
@@ -45,6 +51,8 @@
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
+  </url><url>
+    <loc>http://localhost:1313/categories/test/</loc>
   </url><url>
     <loc>http://localhost:1313/%E5%8D%9A%E5%AE%A2%E7%AE%80%E4%BB%8B/</loc>
   </url><url>
